@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/appthem.dart';
+import 'package:todo_app/view/widget/appthem.dart';
 import 'package:todo_app/model/tasks_model.dart';
 
-class taskitem extends StatefulWidget {
-  taskitem(this.task, {super.key});
-  TaskModel task;
+class TaskItem extends StatefulWidget {
+  final Task task;
+
+  const TaskItem({super.key, required this.task});
 
   @override
-  State<taskitem> createState() => _taskitemState();
+  State<TaskItem> createState() => _TaskItemState();
 }
 
-class _taskitemState extends State<taskitem> {
-  bool isdone = false;
+class _TaskItemState extends State<TaskItem> {
+  bool isDone = false;
 
   @override
   Widget build(BuildContext context) {
@@ -21,15 +22,15 @@ class _taskitemState extends State<taskitem> {
       width: MediaQuery.of(context).size.width,
       height: 130,
       decoration: BoxDecoration(
-        color: isdone ? Appthem.green : Appthem.primary,
+        color: isDone ? Appthem.green : Appthem.primary,
         borderRadius: BorderRadius.circular(15),
       ),
       child: Row(
         children: [
           Container(
-            margin: const EdgeInsetsDirectional.symmetric(horizontal: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 10),
             color: Appthem.backgrounddark,
-            height: MediaQuery.of(context).size.height * 0.6,
+            height: double.infinity,
             width: 4,
           ),
           Expanded(
@@ -38,7 +39,7 @@ class _taskitemState extends State<taskitem> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  widget.task.title, // ✅ دلوقتي بياخد العنوان من الموديل
+                  widget.task.title,
                   style: const TextStyle(color: Appthem.backgrounddark),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
@@ -46,7 +47,7 @@ class _taskitemState extends State<taskitem> {
                 const Divider(thickness: 1, color: Appthem.primary),
                 Text(
                   widget.task.description,
-                  overflow: TextOverflow.ellipsis, // ✅ الوصف من الموديل
+                  overflow: TextOverflow.ellipsis,
                   style: const TextStyle(color: Appthem.backgrounddark),
                 ),
               ],
@@ -63,7 +64,7 @@ class _taskitemState extends State<taskitem> {
             child: GestureDetector(
               onTap: () {
                 setState(() {
-                  isdone = !isdone;
+                  isDone = !isDone;
                 });
               },
               child: const Icon(Icons.check, color: Appthem.primary),

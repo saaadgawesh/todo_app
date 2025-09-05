@@ -24,11 +24,11 @@ class _splashScreanState extends State<splashScrean> {
     return const Scaffold(
       backgroundColor: Color(0xffDFECDB),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
 
-    //  Lottie.asset('')
+    
         ],
       ),
     );

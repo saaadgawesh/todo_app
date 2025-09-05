@@ -5,39 +5,39 @@ import 'package:todo_app/model/user_model.dart';
 
 class Firebasefunctions {
   //for tasks
-  static CollectionReference<TaskModel> taskscollectionref(String userid) =>
-      usercollectionref()
-          .doc(userid)
-          .collection('tasks')
-          .withConverter<TaskModel>(
-            fromFirestore:
-                (snapshot, _) => TaskModel.fromJson(snapshot.data()!),
-            toFirestore: (taskmodel, _) => taskmodel.toJson(),
-          );
+  // static CollectionReference<TaskModel> taskscollectionref(String userid) =>
+  //     usercollectionref()
+  //         .doc(userid)
+  //         .collection('tasks')
+  //         .withConverter<TaskModel>(
+  //           fromFirestore:
+  //               (snapshot, _) => TaskModel.fromJson(snapshot.data()!),
+  //           toFirestore: (taskmodel, _) => taskmodel.toJson(),
+  //         );
 
-  //for tasks
-  static Future<void> addtasktofirestore(TaskModel task, String userid) async {
-    final docRef = taskscollectionref(userid).doc();
-    task.id = docRef.id;
-    return await docRef.set(task);
-  }
+  // //for tasks
+  // static Future<void> addtasktofirestore(TaskModel task, String userid) async {
+  //   final docRef = taskscollectionref(userid).doc();
+  //   task.id = docRef.id;
+  //   return await docRef.set(task);
+  // }
 
-  static Future<void> deletetaskfromfirestore(
-    TaskModel task,
-    String userid,
-  ) async {
-    await taskscollectionref(userid).doc(task.id).delete();
-  }
+  // static Future<void> deletetaskfromfirestore(
+  //   TaskModel task,
+  //   String userid,
+  // ) async {
+  //   await taskscollectionref(userid).doc(task.id).delete();
+  // }
 
-  static Future<List<TaskModel>> gettaskfromfirestore(String userid) async {
-    // QuerySnapshot<TaskModel> querysnapshot =
-    //     await taskscollectionref(userid).get();
-    // return querysnapshot.docs.map((e) => e.data()).toList();
+  // static Future<List<TaskModel>> gettaskfromfirestore(String userid) async {
+  //   // QuerySnapshot<TaskModel> querysnapshot =
+  //   //     await taskscollectionref(userid).get();
+  //   // return querysnapshot.docs.map((e) => e.data()).toList();
 
-    return ((((((await taskscollectionref(userid).get())))))).docs
-        .map((e) => e.data())
-        .toList();
-  }
+  //   return ((((((await taskscollectionref(userid).get())))))).docs
+  //       .map((e) => e.data())
+  //       .toList();
+  // }
 
   /***                                     */ //for users
   static CollectionReference<UserModel> usercollectionref() => FirebaseFirestore

@@ -1,9 +1,9 @@
 // import 'package:flutter/material.dart';
 
 import 'package:flutter/material.dart';
-import 'package:todo_app/appthem.dart';
-import 'package:todo_app/listviewWidget.dart';
-import 'package:todo_app/view/authentication/login.dart';
+import 'package:todo_app/view/onbourding/load_image_name/Loadimage-name.dart';
+import 'package:todo_app/view/widget/appthem.dart';
+import 'package:todo_app/view/widget/listviewWidget.dart';
 import 'package:todo_app/viewmodel/firebasefunctions.dart';
 
 class Setting extends StatelessWidget {
@@ -58,7 +58,7 @@ class Setting extends StatelessWidget {
                 await Firebasefunctions.logout().then((_) {
                   if (context.mounted) {
                     Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => const Login()),
+                      MaterialPageRoute(builder: (context) => const Loadimagename()),
                     );
                   }
                 });
