@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Appthem {
-  static const primary = Color(0xff200E32);
-  static const backgroundlight = Color(0xff5D9CEC);
+  static const primary = Color(0xff5D9CEC);
+  static const backgroundlight = Color(0xffffffff);
   static const backgrounddark = Color(0xff200E32);
 
   static const green = Color(0xff61E757);
@@ -43,21 +43,9 @@ class Appthem {
       shape: CircularNotchedRectangle(),
     ),
     textTheme: const TextTheme(
-      titleLarge: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.w400,
-        
-      ),
-      titleMedium: TextStyle(
-        fontSize: 16,
-        fontWeight: FontWeight.w400,
-        
-      ),
-      titleSmall: TextStyle(
-        fontSize: 14,
-        fontWeight: FontWeight.w400,
-        
-      ),
+      titleLarge: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+      titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+      titleSmall: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
     ),
   );
   static ThemeData darkthem = ThemeData(

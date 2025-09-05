@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
-import 'package:todo_app/appthem.dart';
+import 'package:todo_app/view/widget/appthem.dart';
 import 'package:todo_app/model/tasks_model.dart';
-import 'package:todo_app/view/tasks/defaultelevatedbotton.dart';
-import 'package:todo_app/view/tasks/defaulttextfield.dart';
-import 'package:todo_app/viewmodel/firebasefunctions.dart';
-import 'package:todo_app/viewmodel/provider/tasks_provider.dart';
-import 'package:todo_app/viewmodel/shared/sharedpref.dart';
+import 'package:todo_app/view/widget/defaultelevatedbotton.dart';
+import 'package:todo_app/view/widget/defaulttextfield.dart';
 
 class BottomSheetWidget extends StatefulWidget {
   const BottomSheetWidget({super.key});
@@ -24,6 +21,12 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
   DateTime selecteddate = DateTime.now();
 
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  late Box<Task> box;
+  @override
+  void initState() {
+    super.initState();
+    box = Hive.box<Task>('task');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -139,6 +142,10 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
                 onpress: () {
                   if (formkey.currentState!.validate()) {
                     addtask();
+                    titleController.clear();
+                    descriptionController.clear();
+                    selecteddate = selecteddate;
+                    Navigator.of(context).pop();
                   }
                 },
               ),
@@ -149,27 +156,32 @@ class _BottomSheetWidgetState extends State<BottomSheetWidget> {
     );
   }
 
-  addtask() {
-    final userproviderid =
-        Provider.of<UserProvider>(context, listen: false).currentUser!.id;
+  addtask() async {
+    // final userproviderid =
+    //     Provider.of<UserProvider>(context, listen: false).currentUser!.id;
 
-    Firebasefunctions.addtasktofirestore(
-          TaskModel(
-            title: titleController.text,
-            description: descriptionController.text,
-            date: selecteddate,
-          ),
-          userproviderid,
-        )
-        .then((value) {
-          Navigator.of(context).pop();
-          Provider.of<tasks_provider>(
-            context,
-            listen: false,
-          ).gettasksfilteration(userproviderid);
-        })
-        .catchError((E) {
-          print(E);
-        });
+    // Firebasefunctions.addtasktofirestore(
+    await box.add(
+      Task(
+        title: titleController.text,
+        description: descriptionController.text,
+        date: selecteddate,
+        iscomplete: false,
+      ),
+    );
+    print(box.getAt(0));
+    //   ),
+    //   userproviderid,
+    // );
+    // .then((value) {
+    //   Navigator.of(context).pop();
+    //   Provider.of<tasks_provider>(
+    //     context,
+    //     listen: false,
+    //   ).gettasksfilteration(userproviderid);
+    // })
+    // .catchError((E) {
+    //   print(E);
+    // });
   }
 }

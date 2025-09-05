@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/appthem.dart';
-import 'package:todo_app/view/setting/setting.dart';
-import 'package:todo_app/view/tasks/bottomsheet.dart';
-import 'package:todo_app/view/tasks/tasks.dart';
+import 'package:todo_app/view/tabs/bottomsheet.dart';
+import 'package:todo_app/view/tabs/setting/setting.dart';
+import 'package:todo_app/view/tabs/tasks.dart';
+import 'package:todo_app/view/widget/appthem.dart';
 
 class Homescreen extends StatefulWidget {
   const Homescreen({super.key});
@@ -46,7 +46,7 @@ class _HomescreenState extends State<Homescreen> {
         currentIndex: index1,
         type: BottomNavigationBarType.fixed,
         unselectedItemColor: Appthem.white,
-        selectedItemColor: Appthem.white,
+        selectedItemColor: Appthem.backgrounddark,
         backgroundColor: Appthem.primary,
         iconSize: 30,
         onTap: (index2) {
