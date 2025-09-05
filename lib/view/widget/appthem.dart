@@ -38,10 +38,6 @@ class Appthem {
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(),
 
-    bottomAppBarTheme: const BottomAppBarTheme(
-      padding: EdgeInsets.zero,
-      shape: CircularNotchedRectangle(),
-    ),
     textTheme: const TextTheme(
       titleLarge: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
       titleMedium: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
@@ -73,10 +69,7 @@ class Appthem {
       backgroundColor: primary,
       foregroundColor: backgrounddark,
     ),
-    bottomAppBarTheme: const BottomAppBarTheme(
-      padding: EdgeInsets.zero,
-      shape: CircularNotchedRectangle(),
-    ),
+
     textTheme: const TextTheme(
       titleLarge: TextStyle(
         fontSize: 18,
