@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/view/widget/appthem.dart';
 import 'package:todo_app/model/tasks_model.dart';
+import 'package:todo_app/view/widget/appthem.dart';
 
 class TaskItem extends StatefulWidget {
   final Task task;
@@ -22,17 +22,29 @@ class _TaskItemState extends State<TaskItem> {
       width: MediaQuery.of(context).size.width,
       height: 130,
       decoration: BoxDecoration(
-        color: isDone ? Appthem.green : Appthem.primary,
+        color: widget.task.iscomplete ? Appthem.green : Appthem.primary,
         borderRadius: BorderRadius.circular(15),
       ),
       child: Row(
         children: [
+          const RotatedBox(
+            quarterTurns: 3,
+            child: Text(
+              'todo',
+              style: TextStyle(
+                color: Appthem.white,
+                fontSize: 23,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 10),
-            color: Appthem.backgrounddark,
+            color: Appthem.white,
             height: double.infinity,
             width: 4,
           ),
+
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,15 +52,24 @@ class _TaskItemState extends State<TaskItem> {
               children: [
                 Text(
                   widget.task.title,
-                  style: const TextStyle(color: Appthem.backgrounddark),
+                  style: const TextStyle(
+                    color: Appthem.white,
+                    fontSize: 23,
+                    fontWeight: FontWeight.w500,
+                  ),
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,
                 ),
-                const Divider(thickness: 1, color: Appthem.primary),
+                const SizedBox(height: 5),
                 Text(
+                  maxLines: 2,
                   widget.task.description,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(color: Appthem.backgrounddark),
+                  style: const TextStyle(
+                    color: Appthem.white,
+                    fontSize: 23,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
               ],
             ),
@@ -62,11 +83,7 @@ class _TaskItemState extends State<TaskItem> {
               borderRadius: BorderRadius.circular(15),
             ),
             child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  isDone = !isDone;
-                });
-              },
+              onTap: () {},
               child: const Icon(Icons.check, color: Appthem.primary),
             ),
           ),

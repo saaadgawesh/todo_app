@@ -83,26 +83,27 @@ class _LoadimagenameState extends State<Loadimagename> {
                 label: 'Done',
                 onpress: () async {
                   final currentName = name ?? '';
-                  if (formkey.currentState?.validate() ?? false) {
-                    if (imagepath == null ||
+
+                  if (formkey.currentState!.validate() == true) {
+                    await Applocal.savedata(currentName, Applocal.namekey);
+                    await Applocal.savedata(imagepath!, Applocal.imagekey);
+
+                    if (context.mounted) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (_) => const Homescreen()),
+                      );
+                    } else if (imagepath == null ||
                         imagepath!.isEmpty ||
                         currentName.isEmpty) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          backgroundColor: Colors.red,
-                          content: Text(
-                            'Please choose an image and name before saving!',
-                          ),
-                        ),
-                      );
-                    } else {
                       // تخزين الاسم والصورة بشكل منفصل
-                      await Applocal.storagedata(currentName, Applocal.namekey);
-                      await Applocal.storagedata(imagepath!, Applocal.imagekey);
-
-                      if (context.mounted) {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(builder: (_) => const Homescreen()),
+                      {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            backgroundColor: Colors.red,
+                            content: Text(
+                              'Please choose an image and name before saving!',
+                            ),
+                          ),
                         );
                       }
                       // الانتقال للصفحة التالية

@@ -14,7 +14,7 @@ class Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> {
   int index1 = 0;
 
-  List<Widget> tabs = [const Tasks(), const Setting()];
+  List<Widget> tabs = [const TasksScreen(), const Setting()];
 
   @override
   Widget build(BuildContext context) {
