@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/view/onbourding/load_image_name/Loadimage-name.dart';
 import 'package:todo_app/view/widget/appthem.dart';
 import 'package:todo_app/view/widget/listviewWidget.dart';
-import 'package:todo_app/viewmodel/firebasefunctions.dart';
 
 class Setting extends StatelessWidget {
   const Setting({super.key});
@@ -54,14 +53,12 @@ class Setting extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.logout, color: Colors.red),
               title: Text("تسجيل الخروج", style: color),
-              onTap: () async {
-                await Firebasefunctions.logout().then((_) {
-                  if (context.mounted) {
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => const Loadimagename()),
-                    );
-                  }
-                });
+              onTap: () {
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                    builder: (context) => const Loadimagename(),
+                  ),
+                );
               },
             ),
           ],

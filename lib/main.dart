@@ -1,11 +1,10 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:provider/provider.dart';
 import 'package:todo_app/model/tasks_model.dart';
 import 'package:todo_app/view/homeScreen.dart';
+import 'package:todo_app/view/onbourding/load_image_name/Loadimage-name.dart';
+import 'package:todo_app/view/onbourding/splashScreen/splashScrean.dart';
 import 'package:todo_app/view/widget/appthem.dart';
-import 'package:todo_app/viewmodel/shared/sharedpref.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,31 +15,21 @@ void main() async {
   //2.hive.adaptor
   await Hive.openBox<Task>('task'); //3.hive.openbox
 
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
   // ⬇️ استرجاع بيانات المستخدم المخزنة
-  final userData = await UserPrefs.getUser();
 
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => UserProvider()),
-        // ChangeNotifierProvider(create: (_) => tasks_provider()),
-      ],
-      child: MyApp(userData: userData),
-    ),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final Map<String, String?> userData;
-  const MyApp({super.key, required this.userData});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     // ⬇️ لو لقيت اسم مستخدم → دخّل على HomeScreen
 
     return MaterialApp(
-      home: const Homescreen(),
+      home: const splashScrean(),
       debugShowCheckedModeBanner: false,
 
       theme: Appthem.lightthem,

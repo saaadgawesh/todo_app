@@ -14,53 +14,55 @@ class Homescreen extends StatefulWidget {
 class _HomescreenState extends State<Homescreen> {
   int index1 = 0;
 
-  List<Widget> tabs = [const Tasks(), const Setting()];
+  List<Widget> tabs = [TasksScreen(), const Setting()];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      body: tabs[index1],
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        body: tabs[index1],
 
-      ///***************************************floatingActionButton****////
-      floatingActionButton: FloatingActionButton(
-        shape: const CircleBorder(
-          side: BorderSide(width: 4, color: Appthem.white),
-        ),
-        focusColor: Appthem.primary,
-        backgroundColor: Appthem.primary,
-
-        onPressed: () {
-          showModalBottomSheet(
-            context: context,
-            builder: (context) => const Material(child: BottomSheetWidget()),
-          );
-        },
-        child: const Icon(Icons.add),
-      ),
-
-      ////****************************************** bottomNavigationBar***/
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 0,
-        currentIndex: index1,
-        type: BottomNavigationBarType.fixed,
-        unselectedItemColor: Appthem.white,
-        selectedItemColor: Appthem.backgrounddark,
-        backgroundColor: Appthem.primary,
-        iconSize: 30,
-        onTap: (index2) {
-          setState(() {
-            index1 = index2;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.list), label: 'القائمه'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings_accessibility_outlined),
-            label: 'الضبط',
+        ///***************************************floatingActionButton****////
+        floatingActionButton: FloatingActionButton(
+          shape: const CircleBorder(
+            side: BorderSide(width: 4, color: Appthem.white),
           ),
-        ],
+          focusColor: Appthem.primary,
+          backgroundColor: Appthem.primary,
+
+          onPressed: () {
+            showModalBottomSheet(
+              context: context,
+              builder: (context) => const Material(child: BottomSheetWidget()),
+            );
+          },
+          child: const Icon(Icons.add),
+        ),
+
+        ////****************************************** bottomNavigationBar***/
+        bottomNavigationBar: BottomNavigationBar(
+          elevation: 0,
+          currentIndex: index1,
+          type: BottomNavigationBarType.fixed,
+          unselectedItemColor: Appthem.white,
+          selectedItemColor: Appthem.backgrounddark,
+          backgroundColor: Appthem.primary,
+          iconSize: 30,
+          onTap: (index2) {
+            setState(() {
+              index1 = index2;
+            });
+          },
+          items: const [
+            BottomNavigationBarItem(icon: Icon(Icons.list), label: 'القائمه'),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings_accessibility_outlined),
+              label: 'الضبط',
+            ),
+          ],
+        ),
       ),
     );
   }
