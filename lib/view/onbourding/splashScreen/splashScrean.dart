@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:todo_app/view/HomeScreen.dart';
+
+import 'package:todo_app/view/tabs/HomeScreen.dart';
 import 'package:todo_app/view/widget/appthem.dart';
 
 class splashScrean extends StatefulWidget {

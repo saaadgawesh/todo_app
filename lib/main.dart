@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:todo_app/model/tasks_model.dart';
-import 'package:todo_app/view/homeScreen.dart';
 import 'package:todo_app/view/onbourding/load_image_name/Loadimage-name.dart';
-import 'package:todo_app/view/onbourding/splashScreen/splashScrean.dart';
 import 'package:todo_app/view/widget/appthem.dart';
 
 void main() async {
@@ -29,7 +27,7 @@ class MyApp extends StatelessWidget {
     // ⬇️ لو لقيت اسم مستخدم → دخّل على HomeScreen
 
     return MaterialApp(
-      home: const splashScrean(),
+      home: const Loadimagename(),
       debugShowCheckedModeBanner: false,
 
       theme: Appthem.lightthem,
