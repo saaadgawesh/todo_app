@@ -1,10 +1,6 @@
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
-
-import 'package:todo_app/localstorage/applocal.dart';
-
 import 'package:todo_app/model/tasks_model.dart';
 import 'package:todo_app/view/widget/appthem.dart';
 import 'package:todo_app/view/widget/taskitem.dart';
@@ -21,7 +17,6 @@ class _TasksScreenState extends State<TasksScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Column(
         children: [
@@ -38,44 +33,6 @@ class _TasksScreenState extends State<TasksScreen> {
               firstDate: DateTime.now().subtract(const Duration(days: 30)),
               lastDate: DateTime.now().add(const Duration(days: 360)),
               focusDate: selectedDate,
-
-    return Column(
-      children: [
-        // 🟦 الهيدر (اسم + صورة)
-        Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 0.14,
-          decoration: const BoxDecoration(color: Appthem.primary),
-          child: Padding(
-            padding: EdgeInsets.only(top: 15, left: 10, right: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                FutureBuilder(
-                  future: Applocal.getdata(Applocal.imagekey),
-                  builder: (context, snapshot) {
-                    return CircleAvatar(
-                      radius: 50,
-                      backgroundImage: FileImage(File(snapshot.data!)),
-                    );
-                  },
-                ),
-                const SizedBox(width: 20),
-                FutureBuilder(
-                  future: Applocal.getdata(Applocal.namekey),
-                  builder: (context, snapshot) {
-                    return Text(
-                      ' welcome ${snapshot.data}',
-                      style: const TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    );
-                  },
-                ),
-              ],
-
             ),
           ),
           Expanded(
@@ -128,7 +85,7 @@ class _TasksScreenState extends State<TasksScreen> {
                                   description: task.description,
                                   date: task.date,
                                   iscomplete: true,
-
+                              
                                 ),
                               );
                             } else {
